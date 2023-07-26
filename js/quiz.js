@@ -21,11 +21,11 @@ function Question(questionText, answerOptions, correctAnswer) {
   //   console.log(this);
 }
 
-let question1 = new Question(
-  "Hangisi Javascript paket yönetim uygulamasıdır?",
-  { a: "Node.js", b: "Typescript", c: "Npm" },
-  "c"
-);
+// let question1 = new Question(
+//   "Hangisi Javascript paket yönetim uygulamasıdır?",
+//   { a: "Node.js", b: "Typescript", c: "Npm" },
+//   "c"
+// );
 
 Question.prototype.checkAnswer = function (answer) {
   return answer === this.correctAnswer;
@@ -70,11 +70,37 @@ Quiz.prototype.BringQuestion = function () {
 // console.log(quiz.BringQuestion());
 
 document.querySelector(".btn_start").addEventListener("click", function () {
-  if (quiz.questions.length != quiz.questionIndex) {
-    document.querySelector(".quiz_box").classList.add("active");
-    console.log(quiz.BringQuestion());
+  document.querySelector(".quiz_box").classList.add("active");
+  let question = quiz.BringQuestion();
+  showQuestion(question);
+});
+
+document.querySelector(".next_btn").addEventListener("click", function () {
+  if (quiz.questions.length != quiz.questionIndex + 1) {
     quiz.questionIndex += 1;
+    let question = quiz.BringQuestion();
+    showQuestion(question);
   } else {
     console.log("Quiz bitti");
   }
 });
+
+function showQuestion(question) {
+  let questionInside = `<span>${question.questionText}</span>`;
+  let options = "";
+  //for get the key  using "in" here
+  for (let answer in question.answerOptions) {
+    options += `
+     <div class="option">
+     <span>
+     <b>${answer}</b>: ${question.answerOptions[answer]}
+     </span>
+     
+     </div>
+
+     `;
+  }
+
+  document.querySelector(".question_text").innerHTML = questionInside;
+  document.querySelector(".option_list").innerHTML = options;
+}

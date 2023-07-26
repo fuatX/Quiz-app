@@ -32,10 +32,26 @@ Question.prototype.checkAnswer = function (answer) {
 };
 
 let questions = [
-  new Question("1-Hangisi js paket yönetim uygulamasıdır?"),
-  new Question("2-Hangisi js paket yönetim uygulamasıdır?"),
-  new Question("3-Hangisi js paket yönetim uygulamasıdır?"),
-  new Question("4-Hangisi js paket yönetim uygulamasıdır?"),
+  new Question(
+    "1-Hangisi js paket yönetim uygulamasıdır?",
+    { a: "Node.js", b: "Typescript", c: "Npm" },
+    "c"
+  ),
+  new Question(
+    "2-Hangisi js paket yönetim uygulamasıdır?",
+    { a: "Node.js", b: "Typescript", c: "Npm" },
+    "c"
+  ),
+  new Question(
+    "3-Hangisi js paket yönetim uygulamasıdır?",
+    { a: "Node.js", b: "Typescript", c: "Npm" },
+    "c"
+  ),
+  new Question(
+    "4-Hangisi js paket yönetim uygulamasıdır?",
+    { a: "Node.js", b: "Typescript", c: "Npm" },
+    "c"
+  ),
 ];
 
 function Quiz(questions) {
@@ -53,8 +69,9 @@ Quiz.prototype.BringQuestion = function () {
 // quiz.questionIndex += 1;
 // console.log(quiz.BringQuestion());
 
-document.querySelector(".btn-start").addEventListener("click", function () {
+document.querySelector(".btn_start").addEventListener("click", function () {
   if (quiz.questions.length != quiz.questionIndex) {
+    document.querySelector(".quiz_box").classList.add("active");
     console.log(quiz.BringQuestion());
     quiz.questionIndex += 1;
   } else {

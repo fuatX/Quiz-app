@@ -73,6 +73,7 @@ document.querySelector(".btn_start").addEventListener("click", function () {
   document.querySelector(".quiz_box").classList.add("active");
   let question = quiz.BringQuestion();
   showQuestion(question);
+  showNumberofQuestions(quiz.questionIndex + 1, quiz.questions.length);
   document.querySelector(".next_btn").classList.remove("show");
 });
 
@@ -81,6 +82,8 @@ document.querySelector(".next_btn").addEventListener("click", function () {
     quiz.questionIndex += 1;
     let question = quiz.BringQuestion();
     showQuestion(question);
+    showNumberofQuestions(quiz.questionIndex + 1, quiz.questions.length);
+
     document.querySelector(".next_btn").classList.remove("show");
   } else {
     console.log("Quiz bitti");
@@ -135,4 +138,10 @@ function optionSelected(option) {
   }
 
   document.querySelector(".next_btn").classList.add("show");
+}
+
+function showNumberofQuestions(questionNumber, totalQuestion) {
+  let tag = `<span class="badge bg-warning">${questionNumber} / ${totalQuestion}</span> `;
+
+  document.querySelector(".quiz_box .question_index").innerHTML = tag;
 }

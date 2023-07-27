@@ -73,6 +73,7 @@ document.querySelector(".btn_start").addEventListener("click", function () {
   document.querySelector(".quiz_box").classList.add("active");
   let question = quiz.BringQuestion();
   showQuestion(question);
+  document.querySelector(".next_btn").classList.remove("show");
 });
 
 document.querySelector(".next_btn").addEventListener("click", function () {
@@ -80,10 +81,15 @@ document.querySelector(".next_btn").addEventListener("click", function () {
     quiz.questionIndex += 1;
     let question = quiz.BringQuestion();
     showQuestion(question);
+    document.querySelector(".next_btn").classList.remove("show");
   } else {
     console.log("Quiz bitti");
   }
 });
+
+const option_list = document.querySelector(".option_list");
+const correctIcon = '<div class="icon"><i class="fas fa-check"></i></div>';
+const incorrectIcon = '<div class="icon"><i class="fas fa-times"></i></div>';
 
 function showQuestion(question) {
   let questionInside = `<span>${question.questionText}</span>`;
@@ -102,5 +108,31 @@ function showQuestion(question) {
   }
 
   document.querySelector(".question_text").innerHTML = questionInside;
-  document.querySelector(".option_list").innerHTML = options;
+  option_list.innerHTML = options;
+
+  const option = option_list.querySelectorAll(".option");
+
+  for (let opt of option) {
+    // console.log(opt); her bir şıkka div olarak ulaştın
+    opt.setAttribute("onclick", "optionSelected(this)");
+  }
+}
+function optionSelected(option) {
+  let answer = option.querySelector("span b").textContent; //text content a,b,c
+  let question = quiz.BringQuestion();
+  // console.log(question);
+
+  if (question.checkAnswer(answer)) {
+    option.classList.add("correct");
+    option.insertAdjacentHTML("beforeend", correctIcon);
+  } else {
+    option.classList.add("incorrect");
+    option.insertAdjacentHTML("beforeend", incorrectIcon);
+  }
+
+  for (let i = 0; i < option_list.children.length; i++) {
+    option_list.children[i].classList.add("disabled");
+  }
+
+  document.querySelector(".next_btn").classList.add("show");
 }

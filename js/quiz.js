@@ -7,6 +7,7 @@ const ui = new UI();
 ui.btn_start.addEventListener("click", function () {
   ui.quiz_box.classList.add("active");
   startTimer(10);
+  startTimerLine();
   let question = quiz.BringQuestion();
   ui.showQuestion(question);
   ui.showNumberofQuestions(quiz.questionIndex + 1, quiz.questions.length);
@@ -17,7 +18,9 @@ ui.next_btn.addEventListener("click", function () {
   if (quiz.questions.length != quiz.questionIndex + 1) {
     quiz.questionIndex += 1;
     clearInterval(counter);
+    clearInterval(counterLine);
     startTimer(10);
+    startTimerLine();
     let question = quiz.BringQuestion();
     ui.showQuestion(question);
     ui.showNumberofQuestions(quiz.questionIndex + 1, quiz.questions.length);
@@ -25,6 +28,7 @@ ui.next_btn.addEventListener("click", function () {
   } else {
     console.log("Quiz bitti");
     clearInterval(counter);
+    clearInterval(counterLine);
     ui.score_box.classList.add("active");
     ui.quiz_box.classList.remove("active");
     ui.showResult(quiz.questions.length, quiz.correctAnswerNumber);
@@ -48,6 +52,7 @@ ui.btn_replay.addEventListener("click", function () {
 
 function optionSelected(option) {
   clearInterval(counter);
+  clearInterval(counterLine);
   let answer = option.querySelector("span b").textContent; //text content a,b,c
   let question = quiz.BringQuestion();
   // console.log(question);
@@ -69,6 +74,7 @@ function optionSelected(option) {
 }
 
 let counter;
+let counterLine;
 
 function startTimer(time) {
   counter = setInterval(timer, 1000);
@@ -94,6 +100,20 @@ function startTimer(time) {
         option.classList.add("disabled");
       }
       ui.next_btn.classList.add("show");
+    }
+  }
+}
+function startTimerLine() {
+  let line_width = 0;
+
+  counterLine = setInterval(timer, 20);
+
+  function timer() {
+    line_width += 1;
+    ui.time_line.style.width = line_width + "px";
+
+    if (line_width >= 549) {
+      clearInterval(counterLine);
     }
   }
 }

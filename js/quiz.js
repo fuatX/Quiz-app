@@ -21,7 +21,21 @@ ui.next_btn.addEventListener("click", function () {
     ui.next_btn.classList.remove("show");
   } else {
     console.log("Quiz bitti");
+    ui.score_box.classList.add("active");
+    ui.quiz_box.classList.remove("active");
+    ui.showResult(quiz.questions.length, quiz.correctAnswerNumber);
   }
+});
+
+ui.btn_quit.addEventListener("click", function () {
+  window.location.reload();
+});
+
+ui.btn_replay.addEventListener("click", function () {
+  quiz.questionIndex = 0;
+  quiz.correctAnswerNumber = 0;
+  ui.btn_start.click();
+  ui.score_box.classList.remove("active");
 });
 
 // const option_list = document.querySelector(".option_list");
@@ -34,6 +48,7 @@ function optionSelected(option) {
   // console.log(question);
 
   if (question.checkAnswer(answer)) {
+    quiz.correctAnswerNumber++;
     option.classList.add("correct");
     option.insertAdjacentHTML("beforeend", ui.correctIcon);
   } else {

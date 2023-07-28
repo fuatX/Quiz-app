@@ -5,7 +5,10 @@ function UI() {
   this.option_list = document.querySelector(".option_list");
   (this.correctIcon = '<div class="icon"><i class="fas fa-check"></i></div>'),
     (this.incorrectIcon =
-      '<div class="icon"><i class="fas fa-times"></i></div>');
+      '<div class="icon"><i class="fas fa-times"></i></div>'),
+    (this.score_box = document.querySelector(".score_box"));
+  (this.btn_replay = document.querySelector(".btn_replay")),
+    (this.btn_quit = document.querySelector(".btn_quit"));
 }
 
 UI.prototype.showQuestion = function (question) {
@@ -39,4 +42,9 @@ UI.prototype.showNumberofQuestions = function (questionNumber, totalQuestion) {
   let tag = `<span class="badge bg-warning">${questionNumber} / ${totalQuestion}</span> `;
 
   document.querySelector(".quiz_box .question_index").innerHTML = tag;
+};
+
+UI.prototype.showResult = function (totalQuestion, correctAnswer) {
+  let tag = `Toplam ${totalQuestion} sorudan ${correctAnswer} doğru cvap verdiniz.`;
+  document.querySelector(".score_box .score_text").innerHTML = tag;
 };

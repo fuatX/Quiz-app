@@ -8,6 +8,8 @@ function UI() {
       '<div class="icon"><i class="fas fa-times"></i></div>'),
     (this.score_box = document.querySelector(".score_box"));
   (this.btn_replay = document.querySelector(".btn_replay")),
+    (this.time_text = document.querySelector(".time_text")),
+    (this.time_second = document.querySelector(".time_second")),
     (this.btn_quit = document.querySelector(".btn_quit"));
 }
 
@@ -45,6 +47,6 @@ UI.prototype.showNumberofQuestions = function (questionNumber, totalQuestion) {
 };
 
 UI.prototype.showResult = function (totalQuestion, correctAnswer) {
-  let tag = `Toplam ${totalQuestion} sorudan ${correctAnswer} doğru cvap verdiniz.`;
+  let tag = `Toplam ${totalQuestion} sorudan ${correctAnswer} doğru cevap verdiniz.`;
   document.querySelector(".score_box .score_text").innerHTML = tag;
 };

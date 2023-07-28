@@ -20,23 +20,23 @@ Question.prototype.checkAnswer = function (answer) {
 
 let questions = [
   new Question(
-    "1-Hangisi js paket yönetim uygulamasıdır?",
-    { a: "Node.js", b: "Typescript", c: "Npm" },
+    "1-Hangisi javascript paket yönetim uygulamasıdır?",
+    { a: "Node.js", b: "Typescript", c: "Npm", d: "Nuget" },
     "c"
   ),
   new Question(
-    "2-Hangisi js paket yönetim uygulamasıdır?",
-    { a: "Node.js", b: "Typescript", c: "Npm" },
-    "c"
+    "2-Hangisi frontend kapsamında değerlendirilmez?",
+    { a: "Css", b: "Html", c: "Javascript", d: "SQL" },
+    "d"
   ),
   new Question(
-    "3-Hangisi js paket yönetim uygulamasıdır?",
-    { a: "Node.js", b: "Typescript", c: "Npm" },
-    "c"
+    "3-Hangisi backend kapsamında değerlendirlebilir?",
+    { a: "Node.js", b: "Typescript", c: "Angular", d: "React" },
+    "a"
   ),
   new Question(
-    "4-Hangisi js paket yönetim uygulamasıdır?",
-    { a: "Node.js", b: "Typescript", c: "Npm" },
-    "c"
+    "4-Hangisi javascript programlama dilini kullanmaz?",
+    { a: "React", b: "Vuejs", c: "Angular", d: "Asp.net" },
+    "d"
   ),
 ];
